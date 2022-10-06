@@ -1,0 +1,589 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  man]{apa6}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={A Time Budgeting Technological Intervention for Minimizing Problematic Social Media Use in College Students},
+  pdfauthor={Tinashe M. Tapera \& Ohida Binte Amin},
+  pdflang={en-EN},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{A Time Budgeting Technological Intervention for Minimizing Problematic Social Media Use in College Students}
+\author{Tinashe M. Tapera\textsuperscript{} \& Ohida Binte Amin\textsuperscript{}}
+\date{}
+
+
+\shorttitle{Time Budgeting App for Problematic Social Media Use}
+
+\affiliation{\phantom{0}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Young adults account for the majority of social media users. Recent data shows
+that 84\% of U.S. adults aged 18 to 29 report frequently using any kind of
+social media, and the COVID-19 pandemic has made social media use ubiquitous
+for many (Auxier \& Anderson, 2021). This is particularly important for college
+students who have had to adjust to remote or hybrid learning, and are required
+to engage with instructors and peers on social media. Unfortunately, the rise
+of social media has brought with it a prevalence of \emph{problematic social media use}
+(PSMU). Problematic social media use can be defined in multiple ways, such as
+addiction (the inability to cease the behavior regardless of known negative
+impacts), dependency (an inability to achieve goals without the behavior),
+compulsive use, excessive use, and disordered
+use (Huang, 2022). A recent meta-analytic study confirms that
+problematic social media use can have negative effects on both
+physical and mental health(Huang, 2022).
+The study found that problematic social media use was negatively correlated
+with indicators of well-being, while being positively correlated with anxiety,
+depression, and distress. Importantly, findings were robust across multiple countries.
+
+In considering these challenges, it is important to also acknowledge the
+technology-based environment that students now find themselves in due to the
+pandemic. Zhao and Zhuo (2021) raised worrying
+evidence of the link between the COVID-19 pandemic and addictive social media
+use, while Barbosa-Camacho et al. (2022) showed that COVID-19
+had a significant negative influence on students' mental well-being as it
+pertains to the classroom, in the domains of anxiety, depression, and
+self-perception. An international report by UNESCO reports that over 50\% of
+students felt overwhelmed by the pandemic and how it would affect their
+schoolwork, and the data suggests that vulnerable students (such as those in
+low or underserved SES categories) are statistically more likely to fall behind
+in class as the pandemic continues (Meinck, Fraillon, \& Strietholt, 2022).
+Likewise, Jiang (2022) found that students who
+endorsed being concerned that their academic performance had been affected
+by the pandemic, tended to have higher levels of base anxiety, and these
+same students tended to report higher levels of PSMU.
+
+Further findings from Jiang (2021), however,
+also provide evidence that the link between mental well-being, the pandemic, and social media,
+is multifaceted. This particular study found that while the relationship
+between student anxiety and their social media use was not significant in
+their sample, the moderating effect of students' perceived fatalism --- the
+belief that one's health is not self-determined --- was significant, suggesting
+that the outcome of decreased mental well-being was strongly tied to students'
+perceptions about their sense of autonomy and control over their own health.
+This is supported by a reviews by Haddad et al. (2021) and
+Alshare, Moqbel, and Merhi (2022) who concluded that
+COVID-19 acts as a moderator between social media use (problematic or not) and
+mental health.
+
+Given the prevalence of social media, the increased stress of the ongoing
+pandemic, and the deleterious effects of problematic
+social media use, our group aims to use behavior change theories to inform the
+implementation of a fictional technological intervention for college students
+exhibiting problematic social media use. We aim to implement a novel mobile
+application to help users mindfully budget their time on social media.
+Significantly for this paper, we leverage behavior change theories
+relevant to health \emph{beliefs at the intrapersonal level} to inform the design
+and implementation of our proposed intervention.
+
+\hypertarget{relevant-behavior-change-theories}{%
+\subsection{Relevant Behavior Change Theories}\label{relevant-behavior-change-theories}}
+
+At the intrapersonal or individual level, health behavior change theories primarily address
+constructs within the individual that influence behavior, such as beliefs about self and the world around them,
+intrinsic and extrinsic motivations, perceived skills, previous experiences, and acquired knowledge (Glanz, Rimer, \& Viswanath, 2015).
+There are a handful of currently prevalent individual-level theories, but for
+this paper we've elected to narrow our focus to the Transtheoretical Model for
+Stages of Change (TTM), and the Health Belief Model (HBM). TTM
+conceptualizes behavior change as a sequence of stages that
+unfolds over time as individuals progress through different beliefs about their
+health (Prochaska \& Diclemente, 2005). There are five discrete stages of change in this model --
+precontemplation, contemplation, preparation, action, and maintenance (see Figure~\ref{fig:ttm}).
+TTM has seen widespread adoption and success in a variety of different fields
+and scenarios, and is highly adaptable.
+
+Relatedly, the Health Belief Model (HBM) suggests that an individual's
+perceptions most strongly predict their health-related actions or behaviors (Rosenstock, 1974).
+The model is based on six interrelated constructs: perceived susceptibility,
+perceived severity, perceived benefits, perceived barriers to action,
+self-efficacy, and cues to action (see Figure~\ref{fig:hbm}). HBM is one of
+the oldest models of behavior change that is still used widely to this day.
+
+
+
+\begin{figure}
+\centering
+\includegraphics{ttm.jpg}
+\caption{\label{fig:ttm}Visual Schematic of the Transtheoretical Model for Stages of Change. Source: \href{https://en.wikipedia.org/wiki/Transtheoretical_model}{Wikipedia}}
+\end{figure}
+
+
+
+\begin{figure}
+\centering
+\includegraphics{hbm.jpg}
+\caption{\label{fig:hbm}Visual Schematic of the Health Belief Model. Source: \href{https://www.sciencedirect.com/topics/medicine-and-dentistry/health-belief-model}{ScienceDirect}}
+\end{figure}
+
+While both TTM and HBM have had notable popularity in health interventions in
+various scenarios that may include social media as an environment or
+intervention delivery medium (Al-Sabbagh et al., 2022; Al-Tahitah, Al-Sharafi, \& Abdulrab, 2021; Frith \& Loprinzi, 2017; \emph{{JMIR Public Health} and {Surveillance} - {Use} of {Health Belief Model}\textendash{{Based Deep Learning Classifiers}} for {COVID-19 Social Media Content} to {Examine Public Perceptions} of {Physical Distancing}}, n.d.; Sardi et al., 2019; Zareban et al., 2022), there are
+no published studies demonstrating the use of either TTM or HBM in a
+problematic social media use \emph{intervention}. That being said, there is existing literature
+to support the potential for success of a well-planned intervention for problematic social
+media use. One study implemented cognitive reconstruction, a primary goal of
+cognitive behavioral therapy, to significantly reduce social media addiction
+amongst an experimental cohort of 21 students, compared to the control group (Hou, Xiong, Jiang, Song, \& Wang, 2019). On the other hand, a separate study found that
+simply instructing participants with social media addiction to abstain from
+social media for 7 days resulted in 59\% of participants relapsing, and most
+experiencing severe withdrawal symptoms (Stieger \& Lewetz, 2018).
+
+\hypertarget{applied-behavior-change-mechanisms}{%
+\subsection{Applied Behavior Change Mechanisms}\label{applied-behavior-change-mechanisms}}
+
+To develop the intervention, we apply the selected models to the individual
+with PSMU as summarized in Figure~\ref{fig:ttmapp} and
+Figure~\ref{fig:hbmapp}.
+As Figure~\ref{fig:ttmapp} illustrates, the aim of TTM is to categorize
+an individual along the axes of stages based on their attitudes and beliefs
+about a behavior change, and use our understanding of that stage to inform how
+to encourage a shift in perception towards the next stage.
+As a thought experiment, consider a student exhibiting PSMU in need of a
+behavior change, but does not intend to take any action in the near future --- the
+individual is not aware that excessive social media use may yield the negative effects
+described in the introduction. This student would be classified into the
+precontemplation stage. In the contemplation stage, the student may recognize their
+behavior as problematic, but may still feel ambivalent toward a change in
+behavior. In the preparation stage, the student may be ready to confront
+barriers to taking necessary action. In the action stage, the student is actively
+modifying their behavior, for example by consuming less social media. Lastly,
+in the maintenance phase, the student's social media habits no longer constitute PSMU and
+this behavior is maintained in the long term.
+
+
+
+\begin{figure}
+\centering
+\includegraphics{ttmapplied.jpeg}
+\caption{\label{fig:ttmapp}Application of the TransTheoretical Model for Stages of Change to students with problematic social media use.}
+\end{figure}
+
+We believe that an appropriate technological intervention may best be implemented
+for students in the preparation stage, so we employ HBM to carefully examine
+health belief factors that an intervention at this stage must address. As
+Figure~\ref{fig:hbmapp} illustrates, perceptions about susceptibility and
+seriousness contribute to a student's perceived threat of PSMU, which we
+estimate is \emph{moderate}. A number of benefits of managing PSMU (culminating in
+improved well-being) conflict with various perceived constraints (such as the
+temptation of habit and ubiquity of social media), while modifying external
+factors also influence an individual's beliefs. This, taken into account with
+various environmental cues (such as mobile notifications) all constitute our
+hypothetical student's beliefs about their PSMU at the preparation stage of
+change. We believe the average student in this scenario has a moderate likelihood
+of taking action on their behavior.
+
+
+
+\begin{figure}
+\centering
+\includegraphics{hbmapplied.jpeg}
+\caption{\label{fig:hbmapp}Application of the Health Belief Model to the Preparation stage of TTM in students ready to confront their problematic social media use.}
+\end{figure}
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+\hypertarget{population}{%
+\subsection{Population}\label{population}}
+
+We propose our intervention for undergraduate college students who exhibit
+problematic social media use. Ideally, a cohort of participants would be of
+legal adult age and racially-,
+ethnically-, and gender-diverse, as systematic reviews and meta-analyses have
+established such universality of PSMU. Participants would be required to have
+a smartphone (OS agnostic) that they use comfortably and regularly for interacting with the
+social media apps of their choice. Social media apps may include, but are not
+limited to, Facebook, Instagram, Snapchat, TikTok, Reddit, Whatsapp, Telegram,
+and many others.
+
+We don't foresee any exclusion criteria; participants
+would initially attend a consent and intake session where they would complete
+the Bergen Social Media Addiction Scale (Duradoni, Innocenti, \& Guazzini, 2020)
+and the Social Media Disorder Scale (van den Eijnden, Lemmens, \& Valkenburg, 2016) to
+collect baseline data on participants' relationships with their social media.
+Further, participants would also be asked to complete the Beck Depression Inventory, the Patient Health Questionnaire, and Generalized Anxiety Disorder
+scale, to gather data on participants' baseline mood and anxiety scores (Shevlin et al., 2022). Participants will participate in the
+intervention for at least 1 month, after which they will return to the lab to
+retake the above battery of surveys.
+
+\hypertarget{technological-intervention}{%
+\subsection{Technological Intervention}\label{technological-intervention}}
+
+Our group proposes to implement a mobile application that will allow participants
+to budget the amount of time they spend on social media per week, and reflect on
+their experience after each significant interaction on social media. Our hypothesis is
+that PSMU can be minimized by changing the individual's perceptions about their
+use of social media. The app's goals, therefore, are to empower the user to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Be in control of their own limitations.} We hypothesize from our HBM model
+  that the strongest components affecting the likelihood of change are
+  constraints from the \emph{need} for a social media presence
+  (Figure~\ref{fig:hbmapp}). This autonomy addresses these constraints directly
+  by enabling the user to be mindful of the value of their own time.
+\item
+  \textbf{Be mindful about their mood.} We also hypothesize from the HBM model
+  that the benefits to mental health are not salient enough for students exhibiting
+  PSMU (Figure~\ref{fig:hbmapp}). By providing reflections on their mood, we
+  expect that users will develop greater mindfulness about their relationship with
+  social media, and how that relationship affects their mood.
+\end{enumerate}
+
+To address goal 1, the app can set varying levels of ``strictness'' for encouraging
+users \emph{not} to open the app. In order of strictness:
+
+\begin{itemize}
+\item
+  Displaying a count-up timer of how much time has been spent on social media that week;
+\item
+  Displaying a count-down timer of how much time is left;
+\item
+  Banner notifications while using social media when a large amount of their
+  budget has been used (``you have used half your budget for the week''; ``you have 1 hour remaining in your budget'');
+\item
+  Adding an interruption screen upon opening the social media app, to give users
+  a salient decision point (``Are you sure you want to open Facebook?'');
+\item
+  Hiding the app from the homescreen (ensuring the app is not easily accessible);
+\end{itemize}
+
+To address goal 2, the app will implement short Ecological Momentary Assessments (EMA)
+at the end of each significant social media session (app is running and open
+in the foreground for longer than 2 minutes). The EMAs will be used both to allow the user to briefly
+reflect on their mood and relationship with social media, and to provide the
+app with data that will inform where to set the strictness of the intervention
+going forward. EMA questions could include (with addressed goals in parentheses),
+``How much time do you believe you spent on social media today?'' (goal 1); ``Do you feel your time was well spent?'' (goal 1); ``Is there anything you would have preferred to do with your time today?'' (goal 1); ``Rate your mood right now'' (goal 2).
+
+With the responses to these questions, the app can use this data to aid the user in maintaining their
+desired budget by adjusting the strictness of intervention, if necessary.
+
+\hypertarget{user-story}{%
+\subsubsection{User Story}\label{user-story}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{-1}
+\item
+  User joins the study, completes intake materials, and installs the intervention
+  app on their phone.
+\item
+  User sets a budget for social media use, in hours.
+\item
+  User opens a social media app.
+\item
+  In the background, the intervention app tracks use of social media against the
+  budgeted time.
+\item
+  User closes the social media app.
+\item
+  The intervention app prompts the user to fill out a short EMA survey.
+\item
+  The app evaluates EMA responses and, if necessary, changes the strictness
+  of the intervention.
+\end{enumerate}
+
+\hypertarget{assessment-of-results}{%
+\subsection{Assessment of Results}\label{assessment-of-results}}
+
+The app will evaluate EMA responses continuously, and adjust strictness of
+the intervention according by considering changes in both mood and perceptions
+since the last complete survey. See Figure~\ref{fig:conf} for an illustration.
+When participant mood has decreased since their last survey, or their perception
+about how much time they have spent on social media has decreased, the app will
+implement a stricter intervention. Exact decision points for how much mood has
+to decrease, or how much their positive self-perception has to decrease, in
+order for an intervention change to take effect should
+be determined by psychometric internal validity, which is outside the scope of
+this proposal.
+
+
+
+
+\begin{figure}
+\centering
+\includegraphics{confusion_matrix.001.jpeg}
+\caption{\label{fig:conf}Confusion Matrix of participant mood and participant perception
+of relationship with social media.}
+\end{figure}
+
+After the course of the intervention, participants will have ideally
+completed both a pre- and post-intervention battery of psychometric measures of
+mood, anxiety, depression, and social media addiction questionnaires. Appropriate
+statistical testing (such as ANOVA) can be used to assess the effectiveness of
+this intervention.
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Problematic social media use is a rising and prevalent problem affecting people
+now more than ever due to our increased engagement in online spaces as we grapple
+with the ongoing pandemic. This problem is affecting students especially,
+and it is estimated to get worse. This paper outlined a proposed technological
+intervention, backed by two sound health behavior change theories. The
+Transtheoretical Model categorizes students along a sequence of stages towards
+behavior change, and the Health Belief Model is used to further analyze student
+attitudes about PSMU at the ``preparation to change'' stage. In this paper,
+we developed a proposal for a mobile application aimed at minimizing PSMU in
+students by 1) helping them budget their time spent on social media, and 2)
+providing them with EMAs that allow them to reflect on their perceptions about
+social media use and how it affects their health. These two features work together
+to specifically address tangible constructs identified in our HBM analysis.
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-al-sabbaghPredictorsAdherenceHome2022}{}}%
+Al-Sabbagh, M. Q., Al-Ani, A., Mafrachi, B., Siyam, A., Isleem, U., Massad, F. I., \ldots{} Abufaraj, M. (2022). Predictors of adherence with home quarantine during {COVID-19} crisis: The case of health belief model. \emph{Psychology, Health \& Medicine}, \emph{27}(1), 215--227. \url{https://doi.org/10.1080/13548506.2021.1871770}
+
+\leavevmode\vadjust pre{\hypertarget{ref-alshareDoubleedgedSwordSocial2022}{}}%
+Alshare, K. A., Moqbel, M., \& Merhi, M. I. (2022). The double-edged sword of social media usage during the {COVID-19} pandemic: Demographical and cultural analyses. \emph{Journal of Enterprise Information Management}, \emph{ahead-of-print}(ahead-of-print). \url{https://doi.org/10.1108/JEIM-07-2021-0292}
+
+\leavevmode\vadjust pre{\hypertarget{ref-al-tahitahHowCOVID19Pandemic2021}{}}%
+Al-Tahitah, A. N., Al-Sharafi, M. A., \& Abdulrab, M. (2021). How {COVID-19 Pandemic Is Accelerating} the {Transformation} of {Higher Education Institutes}: {A Health Belief Model View}. In I. Arpaci, M. Al-Emran, M. A. Al-Sharafi, \& G. Marques (Eds.), \emph{Emerging {Technologies During} the {Era} of {COVID-19 Pandemic}} (pp. 333--347). {Cham}: {Springer International Publishing}. \url{https://doi.org/10.1007/978-3-030-67716-9_21}
+
+\leavevmode\vadjust pre{\hypertarget{ref-auxierSocialMediaUse2021}{}}%
+Auxier, B., \& Anderson, M. (2021). Social {Media Use} in 2021.
+
+\leavevmode\vadjust pre{\hypertarget{ref-barbosa-camachoDepressionAnxietyAcademic2022}{}}%
+Barbosa-Camacho, F. J., Romero-Limón, O. M., Ibarrola-Peña, J. C., Almanza-Mena, Y. L., Pintor-Belmontes, K. J., Sánchez-López, V. A., \ldots{} González-Ojeda, A. (2022). Depression, anxiety, and academic performance in {COVID-19}: A cross-sectional study. \emph{BMC Psychiatry}, \emph{22}(1), 443. \url{https://doi.org/10.1186/s12888-022-04062-3}
+
+\leavevmode\vadjust pre{\hypertarget{ref-duradoniWellBeingSocialMedia2020}{}}%
+Duradoni, M., Innocenti, F., \& Guazzini, A. (2020). Well-{Being} and {Social Media}: {A Systematic Review} of {Bergen Addiction Scales}. \emph{Future Internet}, \emph{12}(2), 24. \url{https://doi.org/10.3390/fi12020024}
+
+\leavevmode\vadjust pre{\hypertarget{ref-frithCanFacebookReduce2017}{}}%
+Frith, E., \& Loprinzi, P. (2017). Can {Facebook Reduce Perceived Anxiety Among College Students}? {Randomized Controlled Exercise Trial Using} the {Transtheoretical Model} of {Behavior Change}. \emph{JMIR Mental Health}, \emph{4}(4), e8086. \url{https://doi.org/10.2196/mental.8086}
+
+\leavevmode\vadjust pre{\hypertarget{ref-glanzHealthBehaviorTheory2015}{}}%
+Glanz, K., Rimer, B. K., \& Viswanath, K. (Eds.). (2015). \emph{Health behavior: Theory, research, and practice} (Fifth edition). {San Francisco, CA}: {Jossey-Bass}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-haddadImpactSocialMedia2021}{}}%
+Haddad, J. M., Macenski, C., Mosier-Mills, A., Hibara, A., Kester, K., Schneider, M., \ldots{} Liu, C. H. (2021). The {Impact} of {Social Media} on {College Mental Health During} the {COVID-19 Pandemic}: A {Multinational Review} of the {Existing Literature}. \emph{Current Psychiatry Reports}, \emph{23}(11), 70. \url{https://doi.org/10.1007/s11920-021-01288-y}
+
+\leavevmode\vadjust pre{\hypertarget{ref-houSocialMediaAddiction2019}{}}%
+Hou, Y., Xiong, D., Jiang, T., Song, L., \& Wang, Q. (2019). Social media addiction: {Its} impact, mediation, and intervention. \emph{Cyberpsychology: Journal of Psychosocial Research on Cyberspace}, \emph{13}(1). \url{https://doi.org/10.5817/CP2019-1-4}
+
+\leavevmode\vadjust pre{\hypertarget{ref-huangMetaanalysisProblematicSocial2022}{}}%
+Huang, C. (2022). A meta-analysis of the problematic social media use and mental health. \emph{International Journal of Social Psychiatry}, \emph{68}(1), 12--33. \url{https://doi.org/10.1177/0020764020978434}
+
+\leavevmode\vadjust pre{\hypertarget{ref-jiangProblematicSocialMedia2021}{}}%
+Jiang, Y. (2021). Problematic {Social Media Usage} and {Anxiety Among University Students During} the {COVID-19 Pandemic}: {The Mediating Role} of {Psychological Capital} and the {Moderating Role} of {Academic Burnout}. \emph{Frontiers in Psychology}, \emph{12}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-JMIRPublicHealth}{}}%
+\emph{{JMIR Public Health} and {Surveillance} - {Use} of {Health Belief Model}\textendash{{Based Deep Learning Classifiers}} for {COVID-19 Social Media Content} to {Examine Public Perceptions} of {Physical Distancing}: {Model Development} and {Case Study}}. (n.d.). https://publichealth.jmir.org/2020/3/e20493/.
+
+\leavevmode\vadjust pre{\hypertarget{ref-meinckImpactCOVID19Pandemic2022}{}}%
+Meinck, S., Fraillon, J., \& Strietholt, R. (2022). The {Impact} of the {COVID-19 Pandemic} on {Education}: {International Evidence} from the {Responses} to {Educational Disruption Survey} ({REDS}). In \emph{International Association for the Evaluation of Educational Achievement}. {International Association for the Evaluation of Educational Achievement}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-ngienEffectSocialMedia2022}{}}%
+Ngien, A., \& Jiang, S. (2022). The {Effect} of {Social Media} on {Stress} among {Young Adults} during {COVID-19 Pandemic}: {Taking} into {Account Fatalism} and {Social Media Exhaustion}. \emph{Health Communication}, \emph{37}(10), 1337--1344. \url{https://doi.org/10.1080/10410236.2021.1888438}
+
+\leavevmode\vadjust pre{\hypertarget{ref-prochaskaTranstheoreticalApproach2005}{}}%
+Prochaska, J. O., \& Diclemente, C. C. (2005). The {Transtheoretical Approach}. In J. C. Norcross \& M. R. Goldfried (Eds.), \emph{Handbook of {Psychotherapy Integration}} (p. 0). {Oxford University Press}. \url{https://doi.org/10.1093/med:psych/9780195165791.003.0007}
+
+\leavevmode\vadjust pre{\hypertarget{ref-rosenstockHealthBeliefModel1974}{}}%
+Rosenstock, I. M. (1974). The {Health Belief Model} and {Preventive Health Behavior}. \emph{Health Education Monographs}, \emph{2}(4), 354--386.
+
+\leavevmode\vadjust pre{\hypertarget{ref-sardiBlood4LifeMobileSolution2019}{}}%
+Sardi, L., Kharbouch, M., Rachad, T., Idri, A., de Gea, J. M. C., \& Fernández-Alemán, J. L. (2019). {Blood4Life}: {A Mobile Solution} to {Recruit} and {Retain Blood Donors Through Gamification} and {Trans-Theoretical Model}. In Á. Rocha, H. Adeli, L. P. Reis, \& S. Costanzo (Eds.), \emph{New {Knowledge} in {Information Systems} and {Technologies}} (pp. 3--12). {Cham}: {Springer International Publishing}. \url{https://doi.org/10.1007/978-3-030-16187-3_1}
+
+\leavevmode\vadjust pre{\hypertarget{ref-shevlinMeasurementInvariancePatient2022}{}}%
+Shevlin, M., Butter, S., McBride, O., Murphy, J., Gibson-Miller, J., Hartman, T. K., \ldots{} Bentall, R. P. (2022). Measurement invariance of the {Patient Health Questionnaire} ({PHQ-9}) and {Generalized Anxiety Disorder}~scale ({GAD-7}) across four {European} countries during the {COVID-19} pandemic. \emph{BMC Psychiatry}, \emph{22}(1), 154. \url{https://doi.org/10.1186/s12888-022-03787-5}
+
+\leavevmode\vadjust pre{\hypertarget{ref-stiegerWeekUsingSocial2018}{}}%
+Stieger, S., \& Lewetz, D. (2018). A {Week Without Using Social Media}: {Results} from an {Ecological Momentary Intervention Study Using Smartphones}. \emph{Cyberpsychology, Behavior, and Social Networking}, \emph{21}(10), 618--624. \url{https://doi.org/10.1089/cyber.2018.0070}
+
+\leavevmode\vadjust pre{\hypertarget{ref-vandeneijndenSocialMediaDisorder2016}{}}%
+van den Eijnden, R. J. J. M., Lemmens, J. S., \& Valkenburg, P. M. (2016). The {Social Media Disorder Scale}. \emph{Computers in Human Behavior}, \emph{61}, 478--487. \url{https://doi.org/10.1016/j.chb.2016.03.038}
+
+\leavevmode\vadjust pre{\hypertarget{ref-zarebanEffectEducationBased2022}{}}%
+Zareban, I., Rahmani, A., Allahqoli, L., Ghanei Gheshlagh, R., Hashemian, M., Khayyati, F., \ldots{} Nemat, B. (2022). Effect of {Education Based} on {Trans-Theoretical Model} in {Social Media} on {Students} with {Gingivitis}; a {Randomized Controlled Trial}. \emph{Health Education and Health Promotion}, \emph{10}(1), 1--7.
+
+\leavevmode\vadjust pre{\hypertarget{ref-zhaoCOVID19StressAddictive2021}{}}%
+Zhao, N., \& Zhou, G. (2021). {COVID-19 Stress} and {Addictive Social Media Use} ({SMU}): {Mediating Role} of {Active Use} and {Social Media Flow}. \emph{Frontiers in Psychiatry}, \emph{12}.
+
+\end{CSLReferences}
+
+
+\end{document}

@@ -1,0 +1,36 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{ttm.jpg}
+\caption{\label{fig:ttm}Visual Schematic of the Transtheoretical Model for Stages of Change. Source: \href{https://en.wikipedia.org/wiki/Transtheoretical_model}{Wikipedia}}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{hbm.jpg}
+\caption{\label{fig:hbm}Visual Schematic of the Health Belief Model. Source: \href{https://www.sciencedirect.com/topics/medicine-and-dentistry/health-belief-model}{ScienceDirect}}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{ttmapplied.jpeg}
+\caption{\label{fig:ttmapp}Application of the TransTheoretical Model for Stages of Change to students with problematic social media use.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{hbmapplied.jpeg}
+\caption{\label{fig:hbmapp}Application of the Health Belief Model to the Preparation stage of TTM in students ready to confront their problematic social media use.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{confusion_matrix.001.jpeg}
+\caption{\label{fig:conf}Confusion Matrix of participant mood and participant perception
+of relationship with social media.}
+\end{figure*}
